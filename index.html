@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Car Insurance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <link href="style.css" rel="stylesheet">
+   
+
+</head>
+
+<body>
+
+  
+
+    <form action="" class="needs-validation" id="myForm" novalidate>
+        <div class="container insurance">
+            <div class="row">
+                <div class="col-md-3 insurance-left">
+                    <img src="car-insurance (1) (1).png" alt="car">
+                    <h3>Car Insurance</h3>
+                    <p>Get your online quote now!</p>
+                    <div class="time">Time left = <span id="timer"></span></div>
+                </div>
+                <div class="col-md-9 insurance-right">
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            
+                            <div class="insurance-heading">
+                              
+                                <h3>Insurance Form</h3>
+                            </div>
+
+                            
+
+
+
+                            <!---->
+                            <div class="row insurance-form">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!--Name-->
+                                        <input type="text" class="form-control" id="name" placeholder="First Name *"
+                                            maxlength="15" value="" onkeypress="return onlyAlpha(event)" required />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <!--Surame-->
+                                        <input type="text" class="form-control" id="surname" placeholder="Last Name *" maxlength="20"
+                                            value="" onkeypress="return onlyAlpha(event)" required />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!--Age-->
+                                        <input type="text" id="age" class="form-control" placeholder="Age *" value=""
+                                            maxlength="2" onchange="calculateCost()"
+                                            onkeypress="allowNumbersOnly(event)" required />
+                                        <div class="valid-feedback" id="ageErrorValid">Valid.</div>
+                                        <div class="invalid-feedback" id="ageErrorInalid">Please fill out this field.</div>
+                                        <h6 id="ageError"
+                                        style="color: rgb(209, 68, 68);  text-align: center; margin-top: -10px; visibility: hidden;">
+                                        You need to be 17 years old or older to insure.</h6>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="maxl">
+                                            <!--Gender-->
+                                            <label class="radio inline">
+                                                <input type="radio" name="gender" id="male" value="male" checked
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey; margin-right: 10px;"> Male </span>
+                                            </label>
+
+                                            <label class="radio inline">
+                                                <input type="radio" name="gender" id="female" value="female"
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey;"> Female </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!--Tel-->
+                                        <input type="text" class="form-control" placeholder="Tel *" id="tel" value=""
+                                            maxlength="10" onkeypress="allowNumbersOnly(event)" required />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!--Date-->
+                                        <input type="text" name="date" id="date" class="form-control"
+                                            placeholder="Policy start date (dd/mm/yyyy) *" value="" maxlength="10"
+                                            required />
+                                        <div class="valid-feedback" id="dateErrorValid">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                        <div class="info" data-toggle="tooltip" title="Please specify the start date of your policy!">
+                                            i
+                                        </div>
+                                    </div>
+                                    <h6 id="dateErr"
+                                        style="color: rgb(209, 68, 68);  text-align: center; margin-top: -10px; visibility: hidden;">
+                                        Date Format Incorrect! Try dd/mm/yyy)</h6>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="col-md-6" >
+
+                                    <div class="form-group">
+                                        <!--Cover Type-->
+                                        <select class="form-control" id="coverType" required onchange="calculateCost()">
+                                            <option class="hidden" selected disabled>Type of cover?</option>
+                                            <option>Fully Comprehensive</option>
+                                            <option>Third Party Fire and theft</option>
+                                        </select>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                        <div class="info" data-toggle="tooltip" title="Hooray!">
+                                            i
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group form-inline">
+                                        <!--Make-->
+
+                                        <select class="form-control" id="make" style="width: 45%; margin-right: 10%;"
+                                            onchange="populate()" required>
+                                            <option value="make" class="hidden" selected disabled>Make</option>
+                                            <option value="Toyota">Toyota</option>
+                                            <option value="Ford">Ford</option>
+                                            <option value="Mazda">Mazda</option>
+                                            <option value="BMW">BMW</option>
+                                            <option value="Audi">Audi</option>
+
+                                        </select>
+
+                                        <!--Model-->
+                                        <select class="form-control" id="model" style="width: 45%;" required>
+                                            <option class="hidden" selected disabled>Model</option>
+
+                                        </select>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!--Fuel Type-->
+                                        <select class="form-control" id="fuelType" required onchange="calculateCost()">
+                                            <option class="hidden" selected disabled>Fuel type?</option>
+                                            <option>Diesel</option>
+                                            <option>Petrol</option>
+                                            <option>Hybrid</option>
+                                        </select>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <!--Car Age-->
+                                        <input type="text" name="carAge" id="carAge" class="form-control"
+                                            placeholder="Car age *" value="" maxlength="3"
+                                            onkeypress="allowNumbersOnly(event)" onchange="calculateCost()" required />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!--Claims Free-->
+                                        <select class="form-control" id="claims" onchange="calculateCost()" required>
+                                            <option class="hidden" selected disabled>Claims free for?</option>
+                                            <option>1 year</option>
+                                            <option>2 years</option>
+                                            <option>3 years</option>
+                                            <option>4 years</option>
+                                            <option>>= 5 years</option>
+                                        </select>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                        <div class="info" data-toggle="tooltip" title="How long have you been claims free for?">
+                                            i
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!--Milage-->
+                                        <input type="text" name="milage" id="milage" class="form-control"
+                                            placeholder="Milage per year *" value="" maxlength="7"
+                                            onkeypress="allowNumbersOnly(event)" required onchange="calculateCost()" />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!--Car Value-->
+                                        <input type="text" name="carValue" id="carValue" class="form-control"
+                                            placeholder="Value of car *" value="" maxlength="7"
+                                            onkeypress="allowNumbersOnly(event)" required onchange="calculateCost()" />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                        <div class="info" data-toggle="tooltip" title="What is the value of your car? (Euro)">
+                                            i
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!--Security-->
+                                        <div class="maxl">
+                                            <h5 style="color: dimgrey; margin-bottom: 15px; margin-top: 15px;">Security
+                                            </h5>
+                                            <label class="radio inline">
+                                                <input type="radio" name="security" id="none" value="none" checked
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey; margin-right: 10px;"> None </span>
+                                            </label>
+                                            <label class="radio inline">
+                                                <input type="radio" name="security" id="alarm" value="alarm"
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey; margin-right: 10px;"> Alarm </span>
+                                            </label>
+                                            <label class="radio inline">
+                                                <input type="radio" name="security" id="immobiliser" value="immobiliser"
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey; margin-right: 10px;"> Immobiliser </span>
+                                            </label>
+                                            <label class="radio inline">
+                                                <input type="radio" name="security" id="both" value="both"
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey; margin-right: 10px;"> Alarm & Immobiliser
+                                                </span>
+                                            </label>
+                                            <label class="radio inline">
+                                                <input type="radio" name="security" id="all" value="all"
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey;"> Tracking Device, Alar, & Immobiliser
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="form-group">
+                                        <div class="maxl">
+                                            <!--Car Usage-->
+                                            <h5 style="color: dimgrey; margin-bottom: 15px; margin-top: 15px;">Car Usage
+                                            </h5>
+                                            <label class="radio inline">
+                                                <input type="radio" name="usage" value="pleasure" checked id="pleasure"
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey; margin-right: 10px;"> Social Domestic &
+                                                    Pleasure </span>
+                                            </label>
+                                            <label class="radio inline">
+                                                <input type="radio" name="usage" value="classOneUse" id="classOne"
+                                                    onchange="calculateCost()">
+                                                <span style="color: dimgrey; margin-right: 10px;"> Class 1 Use </span>
+                                            </label>
+                                            <div class="info" data-toggle="tooltip" title="What is the car being used for?">
+                                                i
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="final" placeholder="Total Cost"
+                                            value="" readonly />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <button type="submit" onclick="submitIt()">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+ <div id="id01" class="modal">
+    
+   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">X</span>
+   <form class="modal-content " action="">
+       
+    <div style="margin-right: auto; margin-left: auto; margin-top: 30px; margin-bottom: -30px;">
+        <img src="car-insurance(2).png">
+    </div>
+    
+    <h1>Insurance Details</h1> <br>
+    
+    <p class="para">Details from the insurance form</p>
+
+    <hr>
+    
+     <div class="container">
+       
+        
+        <p id="popName">Details from the insurance form</p>
+        <p id="popAge">Details from the insurance form</p>
+        <p id="popGender">Details from the insurance form</p>
+        <p id="popTel">Details from the insurance form</p>
+        <p id="popPolicy">Details from the insurance form</p>
+        <p id="popCover">Details from the insurance form</p>
+        <p id="popMake">Details from the insurance form</p>
+        <p id="popModel">Details from the insurance form</p>
+        <p id="popFuel">Details from the insurance form</p>
+        <p id="popCarAge">Details from the insurance form</p>
+        <p id="popClaims">Details from the insurance form</p>
+        <p id="popMilage">Details from the insurance form</p>
+        <p id="popValue">Details from the insurance form</p>
+        <p id="popSecurity">Details from the insurance form</p>
+        <p id="popUsage">Details from the insurance form</p>
+
+        <h4 id="popTotal">Details from the insurance form</h4><br><br>
+
+        
+     </div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'"  class="cancelbtn" >Close</button>
+    </div> 
+         
+       
+     </div>
+     
+   </form>
+ </div> 
+
+ <br><br><br>
+
+
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</body>
+
+</html>
